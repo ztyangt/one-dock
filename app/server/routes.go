@@ -15,7 +15,7 @@ func RegisterRoutes(router fiber.Router, db *gorm.DB, cfg *config.Cfg) {
 
 	apiRouter := router.Group("/api")
 
-	system.Setup(apiRouter)
+	system.Setup(apiRouter, cfg)
 	configuration.Setup(apiRouter, db, cfg)
 	user.Setup(apiRouter, db, cfg)
 

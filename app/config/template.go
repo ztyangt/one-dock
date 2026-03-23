@@ -7,15 +7,15 @@ const configTemplate = `# ===========================================
 #【应用配置】
 app:
   port: 9527              # 运行端口
-  name: 纸间博客           # 应用名称
-  description: 以笔为舟，渡纸间之海  # 应用描述
-  version: 0.0.1            # 应用版本
+  name: OneDock           # 应用名称
+  description: 工作与生活，都有一处归栈  # 应用描述
+  version: 0.0.0            # 应用版本
 
 #【JWT 配置】
 jwt:
   secret: your-secret-key-here      # JWT 密钥，生产环境请修改
   issuer: one-dock          # JWT 签发人
-  subject: zjian-login               # JWT 主题
+  subject: user-login               # JWT 主题
   expire: 7200                      # JWT 过期时间（秒）
 
 #【数据库配置】

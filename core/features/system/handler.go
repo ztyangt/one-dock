@@ -1,6 +1,7 @@
 package system
 
 import (
+	"one-dock/app/config"
 	"one-dock/app/response"
 	"runtime"
 	"time"
@@ -8,9 +9,18 @@ import (
 	"github.com/gofiber/fiber/v3"
 )
 
-// systemInfo 获取系统信息
-func systemInfo(c fiber.Ctx) error {
+type handler struct {
+	cfg *config.Cfg
+}
+
+func newHandler(cfg *config.Cfg) *handler {
+	return &handler{cfg: cfg}
+}
+
+// SystemInfo 获取系统信息
+func (h *handler) SystemInfo(c fiber.Ctx) error {
 	return response.Success(c, map[string]interface{}{
+		"app":        h.cfg.App,
 		"domain":     c.BaseURL(),
 		"go_version": runtime.Version(),
 		"arch":       runtime.GOARCH,

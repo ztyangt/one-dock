@@ -1,9 +1,10 @@
 package install
 
 import (
-	"github.com/gofiber/fiber/v3"
 	"one-dock/app/response"
 	"one-dock/core/comm"
+
+	"github.com/gofiber/fiber/v3"
 )
 
 type handler struct {
