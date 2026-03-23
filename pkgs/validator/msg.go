@@ -1,0 +1,33 @@
+package validator
+
+var validMsg = map[string]string{
+	"required":   "不能为空%v！",
+	"url":        "格式不正确%v！",
+	"email":      "格式不正确%v！",
+	"min":        "长度不能小于%v！",
+	"max":        "长度不能大于%v！",
+	"len":        "长度必须为 %v！",
+	"eq":         "必须等于 %v！",
+	"ne":         "必须不等于 %v！",
+	"gt":         "必须大于 %v！",
+	"gte":        "必须大于等于 %v！",
+	"lt":         "必须小于 %v！",
+	"lte":        "必须小于等于 %v！",
+	"oneof":      "必须是 %s 中的一个！",
+	"contains":   "必须包含 %s！",
+	"startswith": "必须以 %s 开头！",
+	"endswith":   "必须以 %s 结尾！",
+	"alphanum":   "只能是字母或数字组合%v！",
+	"alpha":      "必须是字母%v！",
+	"numeric":    "必须是数字%v！",
+	"ascii":      "必须是 ASCII 字符%v！",
+	"ip":         "格式不正确！%s",
+	"port":       "必须在 0-65535 之间！%s",
+	"ipv4":       "格式不正确！%s",
+	"hostname":   "格式不正确！%s",
+	"ipv6":       "格式不正确！%s",
+	"ip4_addr":   "格式不正确！%s",
+	//	自定义
+	"phone":    "格式不正确%v！",
+	"password": "须为字母数字或特殊字符组合%v！",
+}
