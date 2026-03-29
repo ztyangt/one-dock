@@ -38,8 +38,8 @@ func createDefaultConfig(db *gorm.DB) error {
 			Value: utils.Json.Encode(map[string]any{
 				"title":       "OneDock",
 				"description": "工作与生活，都有一处归栈。",
-				"logo":        "/static/logo/logo.svg",
-				"favicon":     "/favicon.svg",
+				"logo":        "/sources/logo/logo.svg",
+				"favicon":     "/sources/favicon.svg",
 			}),
 		},
 		{

@@ -12,11 +12,9 @@ import (
 	"one-dock/app/middleware"
 	"one-dock/app/response"
 	"one-dock/pkgs/console"
-	"one-dock/public"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/recover"
-	"github.com/gofiber/fiber/v3/middleware/static"
 	"gorm.io/gorm"
 )
 
@@ -39,10 +37,18 @@ func NewServer(cfg *config.Cfg, logFactor *logger.LogFactor, db *gorm.DB) *Serve
 	})
 
 	// 静态文件服务
-	app.Get("/*", static.New("/", static.Config{
-		FS:     public.HomeFS,
-		Browse: false,
-	}))
+	//app.Get("/*", static.New("/dist", static.Config{
+	//	FS:     public.HomeFS,
+	//	Browse: false,
+	//}))
+
+	//app.Use("/dist/*", static.New("dist", static.Config{
+	//	FS: public.DistFS,
+	//}))
+
+	//app.Get("/dist*", func(c fiber.Ctx) error {
+	//	return c.SendFile("/dist/index.html")
+	//})
 
 	// 全局中间件
 	app.Use(

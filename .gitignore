@@ -34,6 +34,7 @@ _test_
 build/
 bin/
 uploads/
+/public/dist
 
 install.lock
 database.db
