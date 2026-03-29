@@ -7,8 +7,6 @@ const configTemplate = `# ===========================================
 #【应用配置】
 app:
   port: 9527              # 运行端口
-  name: OneDock           # 应用名称
-  description: 工作与生活，都有一处归栈  # 应用描述
   version: 0.0.0            # 应用版本
 
 #【JWT 配置】

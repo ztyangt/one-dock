@@ -11,10 +11,10 @@ type Cfg struct {
 }
 
 type AppConfig struct {
-	Port        string `mapstructure:"port" json:"port"`
-	Name        string `mapstructure:"name" json:"name"`
-	Description string `mapstructure:"description" json:"description"`
-	Version     string `mapstructure:"version" json:"version"`
+	Port string `mapstructure:"port" json:"port"`
+	//Name        string `mapstructure:"name" json:"name"`
+	//Description string `mapstructure:"description" json:"description"`
+	Version string `mapstructure:"version" json:"version"`
 }
 
 type JWTConfig struct {

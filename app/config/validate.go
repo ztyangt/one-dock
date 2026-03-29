@@ -24,8 +24,8 @@ func validateAppConfig(cfg *AppConfig) error {
 	if cfg.Port == "" {
 		return fmt.Errorf("端口不能为空")
 	}
-	if cfg.Name == "" {
-		return fmt.Errorf("应用名称不能为空")
+	if cfg.Version == "" {
+		return fmt.Errorf("应用版本不能为空")
 	}
 	return nil
 }

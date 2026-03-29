@@ -36,10 +36,10 @@ func createDefaultConfig(db *gorm.DB) error {
 			Name:      "系统配置",
 			Public:    true,
 			Value: utils.Json.Encode(map[string]any{
-				"title":       "GoSeed",
-				"description": "GoSeed是一个基于fiber的快速开发框架。",
+				"title":       "OneDock",
+				"description": "工作与生活，都有一处归栈。",
 				"logo":        "/static/logo/logo.svg",
-				"favicon":     "/static/favicon.ico",
+				"favicon":     "/favicon.svg",
 			}),
 		},
 		{
