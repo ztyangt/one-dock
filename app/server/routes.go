@@ -6,6 +6,7 @@ import (
 
 	"one-dock/app/config"
 	configuration "one-dock/core/features/config"
+	"one-dock/core/features/storage"
 	"one-dock/core/features/system"
 	"one-dock/core/features/user"
 	"one-dock/pkgs/console"
@@ -25,6 +26,7 @@ func RegisterRoutes(app *fiber.App, db *gorm.DB, cfg *config.Cfg) {
 	system.Setup(apiRouter, cfg)
 	configuration.Setup(apiRouter, db, cfg)
 	user.Setup(apiRouter, db, cfg)
+	storage.Setup(apiRouter, db, cfg)
 
 	// ==========================================
 	// 2. 独立静态资源目录 (/sources)
@@ -34,8 +36,6 @@ func RegisterRoutes(app *fiber.App, db *gorm.DB, cfg *config.Cfg) {
 		log.Fatalf("无法剥离 sources 目录前缀: %v", err)
 	}
 
-	// 修复点 1：将 router 修改为 app
-	// 修复点 2：static.New 第一个参数改为空字符串 ""
 	app.Get("/sources/*", static.New("", static.Config{
 		FS: sourceFS,
 	}))

@@ -41,14 +41,14 @@ func GetUserMiddleware(cfg *config.Cfg) fiber.Handler {
 
 		// 检查 token 是否过期
 		if isTokenExpired(claims) {
-			setContextError(ctx, e.New(403, "token 过期！"))
+			setContextError(ctx, e.New(403, "登录过期！"))
 			return ctx.Next()
 		}
 
 		// 从 claims 中提取用户状态数据
 		userData, ok := claims["data"]
 		if !ok {
-			setContextError(ctx, e.New(403, "token 数据无效！"))
+			setContextError(ctx, e.New(403, "登录凭证数据无效！"))
 			return ctx.Next()
 		}
 
@@ -113,14 +113,14 @@ func parseAndValidateToken(tokenStr string, cfg *config.Cfg) (jwt.MapClaims, err
 // isTokenExpired 检查 token 是否过期
 // exp 字段应为 Unix 时间戳（秒）
 func isTokenExpired(claims jwt.MapClaims) bool {
-	exp, ok := claims["exp"].(float64)
+	exp, ok := claims["exp"].(int64)
 	if !ok {
 		// 如果没有 exp 字段，认为 token 永不过期
 		return false
 	}
 
 	// 转换为时间戳进行比较（exp 通常是 Unix 时间戳，单位：秒）
-	expTime := time.Unix(int64(exp), 0)
+	expTime := time.UnixMilli(exp)
 	return time.Now().After(expTime)
 }
 
