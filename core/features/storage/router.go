@@ -28,6 +28,14 @@ func Setup(routerGroup fiber.Router, db *gorm.DB, cfg *config.Cfg) {
 	router := routerGroup.Group("/storage")
 
 	{
+		manageRouter := router.Group("", middleware.AdminMiddleware(cfg))
+		manageRouter.Get("/list", h.Manage.List)
+		manageRouter.Get("/stats", h.Manage.Stats)
+		manageRouter.Get("/download/:id", h.Manage.Download)
+		manageRouter.Post("/folder", h.Manage.CreateFolder)
+		manageRouter.Put("/rename", h.Manage.Rename)
+		manageRouter.Delete("", h.Manage.Delete)
+
 		chunkUploadRouter := router.Group("/chunk", middleware.AdminMiddleware(cfg))
 		chunkUploadRouter.Post("/init", h.Upload.InitChunkUpload)
 		chunkUploadRouter.Post("/upload", h.Upload.UploadChunk)

@@ -2,6 +2,29 @@ package entity
 
 import "mime/multipart"
 
+// StorageListRequest 文件列表请求
+type StorageListRequest struct {
+	ParentId string `query:"parent_id" json:"parent_id" alias:"父目录ID"`
+	Category int64  `query:"category" json:"category" alias:"文件分类"`
+}
+
+// CreateFolderRequest 创建文件夹请求
+type CreateFolderRequest struct {
+	Name     string `json:"name" validate:"required" alias:"文件夹名称"`
+	ParentId string `json:"parent_id" alias:"父目录ID"`
+}
+
+// RenameStorageRequest 重命名请求
+type RenameStorageRequest struct {
+	Id   string `json:"id" validate:"required" alias:"文件ID"`
+	Name string `json:"name" validate:"required" alias:"文件名"`
+}
+
+// DeleteStorageRequest 删除请求
+type DeleteStorageRequest struct {
+	Ids []string `json:"ids" validate:"required" alias:"文件ID列表"`
+}
+
 // InitChunkUploadRequest 初始化分片上传请求
 type InitChunkUploadRequest struct {
 	FileName string `json:"file_name" validate:"required" alias:"文件名"`

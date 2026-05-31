@@ -4,6 +4,8 @@ import (
 	"context"
 	"one-dock/core/features/storage/entity"
 	"one-dock/core/features/storage/models"
+
+	"gorm.io/gorm/clause"
 )
 
 // QueryChunkRecord 查询上传分片记录
@@ -11,7 +13,7 @@ func (r *repository) QueryChunkRecord(ctx context.Context, uploadId string) ([]s
 	var hashes []string
 	if err := r.db.WithContext(ctx).Model(&models.ChunkModel{}).
 		Where("upload_id = ?", uploadId).
-		Order("offset asc").
+		Order(clause.OrderByColumn{Column: clause.Column{Name: "offset"}}).
 		Pluck("hash", &hashes).Error; err != nil {
 		return nil, err
 	}
@@ -22,7 +24,7 @@ func (r *repository) QueryChunkRecords(ctx context.Context, uploadId int64) ([]m
 	var chunks []models.ChunkModel
 	if err := r.db.WithContext(ctx).
 		Where("upload_id = ?", uploadId).
-		Order("offset asc").
+		Order(clause.OrderByColumn{Column: clause.Column{Name: "offset"}}).
 		Find(&chunks).Error; err != nil {
 		return nil, err
 	}

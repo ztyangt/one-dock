@@ -30,6 +30,21 @@ type Repository interface {
 	//	CreateStorageRecord 创建逻辑存储记录
 	CreateStorageRecord(ctx context.Context, req *entity.CreateStorageDto) (int64, error)
 
+	// QueryStorageList 查询逻辑文件列表
+	QueryStorageList(ctx context.Context, parentId string, category int64) ([]models.StorageModel, error)
+
+	// QueryStorageById 查询逻辑文件
+	QueryStorageById(ctx context.Context, id string) (*models.StorageModel, error)
+
+	// RenameStorage 重命名逻辑文件
+	RenameStorage(ctx context.Context, id string, name string) error
+
+	// DeleteStorageRecords 删除逻辑文件
+	DeleteStorageRecords(ctx context.Context, ids []string) error
+
+	// QueryStorageStats 查询存储统计
+	QueryStorageStats(ctx context.Context) (entity.StorageStatsResponse, error)
+
 	// UpdateFileRefCount 更新文件物理存储引用计数
 	// delta 为增加或减少的引用计数
 	UpdateFileRefCount(ctx context.Context, fileHash string, delta int) (int64, error)

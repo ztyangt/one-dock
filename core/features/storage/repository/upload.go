@@ -46,6 +46,7 @@ func (r *repository) CreateUploadRecord(ctx context.Context, req *entity.CreateU
 // UpdateUploadStatus 更新上传记录状态
 func (r *repository) UpdateUploadStatus(ctx context.Context, uploadId int64, hasUploaded bool) error {
 	return r.db.WithContext(ctx).
+		Model(&models.UploadModel{}).
 		Where("id = ?", uploadId).
 		Update("has_uploaded", hasUploaded).
 		Error
